@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+GET http://localhost:3000/players/
+=======
+GET http://localhost:3000/players/
+###
+
+POST http://localhost:3000/players/
+Content-Type: application/json
+
+{
+  "playerName": "Vishal",
+  "jerseyNumber": 17,
+  "role": "Bowler"
+}
+>>>>>>> f4f30ab... API-2 code added and files
