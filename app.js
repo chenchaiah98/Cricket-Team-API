@@ -4,10 +4,7 @@ const path = require("path");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const app = express();
-<<<<<<< HEAD
-=======
 app.use(express.json());
->>>>>>> f4f30ab... API-2 code added and files
 
 const dbPath = path.join(__dirname, "cricketTeam.db");
 
@@ -30,10 +27,8 @@ const initializeDBAndServer = async () => {
 
 initializeDBAndServer();
 
-<<<<<<< HEAD
-=======
 // API-1
->>>>>>> f4f30ab... API-2 code added and files
+
 app.get("/players/", async (request, response) => {
   const getPlayers = `   
     SELECT 
@@ -43,10 +38,6 @@ app.get("/players/", async (request, response) => {
   response.send(playersArray);
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f4f30ab... API-2 code added and files
 // API-2
 app.post("/players/", async (request, response) => {
   const playerDetails = request.body;
