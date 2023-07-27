@@ -24,9 +24,17 @@ const initializeDBAndServer = async () => {
     process.exit(1);
   }
 };
-
 initializeDBAndServer();
 
+const convertDbObjectToResponseObject = (dbObject) => {
+  console.log(dbObject);
+  return {
+    playerId: dbObject.player_id,
+    playerName: dbObject.player_name,
+    jerseyNumber: dbObject.jersey_number,
+    role: dbObject.role,
+  };
+};
 // API-1
 
 app.get("/players/", async (request, response) => {
@@ -35,7 +43,9 @@ app.get("/players/", async (request, response) => {
         * 
     FROM cricket_team;`;
   const playersArray = await db.all(getPlayers);
-  response.send(playersArray);
+  response.send(
+    playersArray.map((eachValue) => convertDbObjectToResponseObject(eachValue))
+  );
 });
 
 // API-2
@@ -61,7 +71,7 @@ app.get("/players/:playerId/", async (request, response) => {
     WHERE
         player_id = ${playerId};`;
   const player = await db.get(getPlayer);
-  response.send(player);
+  response.send(convertDbObjectToResponseObject(player));
 });
 
 // API-4
@@ -95,3 +105,5 @@ app.delete("/players/:playerId/", async (request, response) => {
   await db.run(deletePlayer);
   response.send("Player Removed");
 });
+
+module.exports = app;
